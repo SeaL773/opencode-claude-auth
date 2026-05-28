@@ -92,6 +92,7 @@ describe("betas", () => {
       "claude-sonnet-4-6",
       "claude-opus-4-6",
       "claude-opus-4-7",
+      "claude-opus-4-8",
     ]) {
       const override = getModelOverride(model)
       assert.ok(
@@ -127,6 +128,7 @@ describe("betas", () => {
         "claude-sonnet-4-6",
         "claude-opus-4-6",
         "claude-opus-4-7",
+        "claude-opus-4-8",
         "claude-sonnet-4-5-20250514",
         "claude-opus-4-5-20250514",
         "claude-opus-4-20250514",
@@ -165,6 +167,12 @@ describe("betas", () => {
         opus47.includes("context-1m-2025-08-07"),
         "opus 4.7 should get 1M beta when opted in",
       )
+
+      const opus48 = getModelBetas("claude-opus-4-8")
+      assert.ok(
+        opus48.includes("context-1m-2025-08-07"),
+        "opus 4.8 should get 1M beta when opted in",
+      )
     } finally {
       delete process.env.ANTHROPIC_ENABLE_1M_CONTEXT
     }
@@ -199,6 +207,7 @@ describe("betas", () => {
     assert.ok(supports1mContext("claude-sonnet-4-6"), "sonnet 4.6 supports 1M")
     assert.ok(supports1mContext("claude-opus-4-6"), "opus 4.6 supports 1M")
     assert.ok(supports1mContext("claude-opus-4-7"), "opus 4.7 supports 1M")
+    assert.ok(supports1mContext("claude-opus-4-8"), "opus 4.8 supports 1M")
     assert.ok(
       !supports1mContext("claude-sonnet-4-5-20250514"),
       "sonnet 4.5 does not support 1M",
